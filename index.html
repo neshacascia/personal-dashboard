@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./config.js"></script>
+    <script type="module" src="./main.js" async></script>
+    <title>Personal Dashboard</title>
+  </head>
+
+  <body>
+    <nav>
+      <div class="current-location">
+        <i class="fa-solid fa-location-dot"></i>
+        <span id="location"></span>
+      </div>
+
+      <div class="search-bar">
+        <button id="search-btn">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <input class="search-input" type="search" placeholder="Search city..."
+        />
+      </div>
+
+      <div class="metric">
+        <button id="celsius" type="button">C</button>
+        <button id="fahrenheit" type="button">F</button>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="left-container">
+        <div class="top">
+          <div id="day-0" class="current-weather">
+            <div class="date-time">
+              <span id="date"></span>
+              <span id="time"></span>
+            </div>
+  
+            <div class="weather">
+              <img id="weather-icon" src="" alt="" />
+              <span id="current-temp"></span>
+            </div>
+  
+            <span id="description"></span>
+  
+            <div class="border"></div>
+  
+            <div class="weather-info">
+              <h3>Feels like:</h3>
+              <span id="feels-temp"></span>
+            </div>
+          </div>
+  
+          <div class="pomodoro-container"></div>
+        </div>
+
+        <div class="bottom">
+          <div class="details">
+            <div class="wind-container">
+              <i class="fa-solid fa-wind"></i>
+              <h3>Wind Status</h3>
+              <span id="wind"></span>
+            </div>
+            <div class="humidity-container">
+              <i class="fa-solid fa-droplet"></i>
+              <h3>Humidity</h3>
+              <span id="humidity"></span>
+            </div>
+          </div>
+
+          <div class="quotes-container">
+          </div>
+        </div>
+      </div>
+
+      <div class="right-container">
+        <div class="to-do-container">
+          <form class="to-do-form">
+            <div class="checkbox-container">
+              <button class="checkbox" type="button"></button>
+            </div>
+            <input class="to-do-input" type="text" placeholder="Create a new to do..."
+            />
+          </form>
+
+          <ul id="to-do-list"></ul>
+
+          <div class="button-container">
+            <span id="items-left">0 items left</span>
+            <button id="clear-completed">Clear Completed</button>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </body>
+</html>
