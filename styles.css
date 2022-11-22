@@ -105,7 +105,7 @@ nav {
   height: 90vh;
   display: flex;
   padding: 0 80px;
-  margin-top: 70px;
+  margin-top: 50px;
 }
 
 .left-container {
@@ -115,14 +115,14 @@ nav {
   flex-direction: column;
   justify-content: space-between;
   margin: 10px 0;
-  gap: 60px;
+  gap: 20px 60px;
 }
 
 .top {
   height: 50%;
   display: flex;
   justify-content: space-between;
-  gap: 35px;
+  gap: 42px;
 }
 
 .current-weather {
@@ -182,7 +182,7 @@ nav {
 .pomodoro-container {
   background: rgba(74, 80, 85, 0.45);
   backdrop-filter: blur(5px) saturate(180%);
-  width: 440px;
+  width: 400px;
   border-radius: 16px;
 }
 
