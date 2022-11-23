@@ -115,7 +115,7 @@ nav {
   flex-direction: column;
   justify-content: space-between;
   margin: 10px 0;
-  gap: 20px 60px;
+  gap: 30px 60px;
 }
 
 .top {
@@ -179,11 +179,79 @@ nav {
   margin-top: 20px;
 }
 
+/* Pomodoro Timer Styles */
 .pomodoro-container {
   background: rgba(74, 80, 85, 0.45);
   backdrop-filter: blur(5px) saturate(180%);
   width: 400px;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
   border-radius: 16px;
+}
+
+.timer-modes {
+  height: 100%;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.timer-modes button {
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.active {
+  color: #86a79f;
+}
+
+button i {
+  font-size: 2.4rem;
+}
+
+.timer {
+  width: 65%;
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 8px solid #86a79f76;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.circle {
+  /* background: #93c1b5; */
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 50%;
+}
+
+.time {
+  position: relative;
+}
+
+.time span {
+  font-size: 3.4rem;
+  font-weight: 300;
+}
+
+.hidden {
+  display: none;
 }
 
 .bottom {
@@ -215,6 +283,10 @@ nav {
 .details h3 {
   font-size: 1.3rem;
   letter-spacing: 0.06em;
+}
+
+.details i {
+  font-size: 1.4rem;
 }
 
 #feels-temp,
@@ -281,7 +353,7 @@ nav {
 }
 
 .to-do-form {
-  background: #5b6361;
+  background: #5a6864;
   display: grid;
   grid-template-columns: 12% 88%;
   border-radius: 4px;
@@ -312,7 +384,7 @@ nav {
 }
 
 .to-do-input::placeholder {
-  color: rgba(255, 255, 255, 0.452);
+  color: rgba(255, 255, 255, 0.638);
 }
 
 #to-do-list {
@@ -320,7 +392,7 @@ nav {
 }
 
 .to-do-item {
-  background: #5b6361;
+  background: #5a6864;
   list-style: none;
   display: grid;
   grid-template-columns: 12% 88%;

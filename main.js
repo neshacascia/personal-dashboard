@@ -46,8 +46,6 @@ navigator.geolocation.getCurrentPosition(position => {
         document.querySelector('#humidity').innerHTML =
           data.main.humidity + `<span class="metrics"> %</span>`;
 
-        console.log(typeof data.weather[0].description);
-
         function displayWeatherIcon() {
           if (data.weather[0].description === 'clear sky') {
             if (isDayTime) {

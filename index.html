@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="./styles.css" />
     <script src="./config.js"></script>
-    <script type="module" src="./main.js" async></script>
+    <script src="./main.js" async></script>
+    <script src="./pomodoro.js" async></script>
     <title>Personal Dashboard</title>
   </head>
 
@@ -57,7 +58,30 @@
             </div>
           </div>
   
-          <div class="pomodoro-container"></div>
+          <div class="pomodoro-container">
+            <div class="timer-modes">
+              <button data-mode="pomodoro" id="work" class="mode-btns">work</button>
+              <button data-mode="break" id="break" class="mode-btns">break</button>
+              <!-- <button data-mode="long" id="long" class="mode-btns">long</button> -->
+
+              <button type="button">
+                <i data-mode="start" id="start-timer" class="fa-solid fa-play"></i>
+                <i data-mode="resume" id="resume-timer" class="fa-solid fa-play hidden"></i>
+                <i data-mode="pause" id="pause-timer"class="fa-solid fa-pause hidden"></i>
+                
+              </button>
+            </div>
+
+            <div class="timer">
+              <div class="circle">
+                <div class="time">
+                  <span id="minutes"></span>
+                  <span>:</span>
+                  <span id="seconds"></span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="bottom">
