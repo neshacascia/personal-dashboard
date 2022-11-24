@@ -1,13 +1,19 @@
-let isBreak = false;
+let breakCount = 0;
 let myInterval;
 const modeBtns = document.querySelectorAll('.mode-btns');
 const startBtn = document.querySelector('#start-timer');
 const resumeBtn = document.querySelector('#resume-timer');
 const pauseBtn = document.querySelector('#pause-timer');
+const alarm = document.createElement('audio');
+alarm.setAttribute(
+  'src',
+  'https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3'
+);
 
 const timer = {
   pomodoro: 25,
   break: 5,
+  longBreak: 15,
 };
 
 startBtn.addEventListener('click', e => {
@@ -85,16 +91,29 @@ function timerFunction() {
 
   if (timer.seconds < 0) {
     timer.minutes = timer.minutes - 1;
+    if (timer.minutes < 0) {
+      if (breakCount > 5) {
+        timer.minutes = timer.longBreak - 1;
+        breakCount = 0;
+        document.querySelector('#work').classList.remove('active');
+        document.querySelector('#break').classList.add('active');
+      } else if (breakCount % 2 === 0) {
+        alarm.play();
+        timer.minutes = timer.break - 1;
+        breakCount++;
+        document.querySelector('#work').classList.remove('active');
+        document.querySelector('#break').classList.add('active');
+      } else {
+        alarm.play();
+        timer.minutes = timer.pomodoro - 1;
+        breakCount++;
+
+        document.querySelector('#break').classList.remove('active');
+        document.querySelector('#work').classList.add('active');
+      }
+    }
     timer.seconds = 59;
   }
-
-  if (timer.minutes < 0) {
-    timer.minutes = 0;
-    timer.seconds = 0;
-    pauseBtn.style.display = 'none';
-    resumeBtn.style.display = 'block';
-  }
-
   updateClock();
 }
 
