@@ -1,9 +1,14 @@
 const baseUrl = 'https://api.openweathermap.org/data/2.5/weather';
 const apiKey = config.WEATHER_API_KEY;
 const weatherIconDisplay = document.querySelector('#weather-icon');
+const celsiusBtn = document.querySelector('#celsius');
+const fahrenheitBtn = document.querySelector('#fahrenheit');
 
 let lat;
 let lon;
+
+celsiusBtn.addEventListener('click', displayCelsiusWeather);
+fahrenheitBtn.addEventListener('click', fahrenheitWeather);
 
 // gets user's weather based on current location:
 navigator.geolocation.getCurrentPosition(position => {
@@ -37,6 +42,37 @@ async function displayCelsiusWeather() {
     }
   } catch (error) {
     console.log(error);
+  }
+}
+
+function fahrenheitWeather() {
+  displayFahrenheitWeather();
+
+  async function displayFahrenheitWeather() {
+    try {
+      const response = await fetch(
+        `${baseUrl}?lat=${lat}&lon=${lon}${apiKey}&units=imperial`
+      );
+      if (response.ok) {
+        const fahrenheitData = await response.json();
+
+        displayWeatherIcon(fahrenheitData);
+
+        document.querySelector('#location').textContent = fahrenheitData.name;
+        document.querySelector('#current-temp').textContent =
+          Math.ceil(fahrenheitData.main.temp) + '°F';
+        document.querySelector('#description').textContent =
+          fahrenheitData.weather[0].description;
+        document.querySelector('#feels-temp').textContent =
+          Math.ceil(fahrenheitData.main.feels_like) + ' °F';
+        document.querySelector('#wind').innerHTML =
+          fahrenheitData.wind.speed + `<span class="metrics"> m/h</span>`;
+        document.querySelector('#humidity').innerHTML =
+          fahrenheitData.main.humidity + `<span class="metrics"> %</span>`;
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
