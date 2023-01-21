@@ -30,7 +30,7 @@ async function displayCelsiusWeather() {
 
       document.querySelector('#location').textContent = data.name;
       document.querySelector('#current-temp').textContent =
-        Math.ceil(data.main.temp) + '°C';
+        Math.ceil(data.main.temp) + ' °C';
       document.querySelector('#description').textContent =
         data.weather[0].description;
       document.querySelector('#feels-temp').textContent =
@@ -60,7 +60,7 @@ function fahrenheitWeather() {
 
         document.querySelector('#location').textContent = fahrenheitData.name;
         document.querySelector('#current-temp').textContent =
-          Math.ceil(fahrenheitData.main.temp) + '°F';
+          Math.ceil(fahrenheitData.main.temp) + ' °F';
         document.querySelector('#description').textContent =
           fahrenheitData.weather[0].description;
         document.querySelector('#feels-temp').textContent =
