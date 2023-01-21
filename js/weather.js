@@ -10,35 +10,35 @@ navigator.geolocation.getCurrentPosition(position => {
   lat = position.coords.latitude.toFixed(2);
   lon = position.coords.longitude.toFixed(2);
 
-  displayUserWeather();
-
-  async function displayUserWeather() {
-    try {
-      const response = await fetch(
-        `${baseUrl}?lat=${lat}&lon=${lon}${apiKey}&units=metric`
-      );
-      if (response.ok) {
-        const data = await response.json();
-
-        displayWeatherIcon(data);
-
-        document.querySelector('#location').textContent = data.name;
-        document.querySelector('#current-temp').textContent =
-          Math.ceil(data.main.temp) + '°C';
-        document.querySelector('#description').textContent =
-          data.weather[0].description;
-        document.querySelector('#feels-temp').textContent =
-          Math.ceil(data.main.feels_like) + ' °C';
-        document.querySelector('#wind').innerHTML =
-          data.wind.speed + `<span class="metrics"> km/h</span>`;
-        document.querySelector('#humidity').innerHTML =
-          data.main.humidity + `<span class="metrics"> %</span>`;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  displayCelsiusWeather();
 });
+
+async function displayCelsiusWeather() {
+  try {
+    const response = await fetch(
+      `${baseUrl}?lat=${lat}&lon=${lon}${apiKey}&units=metric`
+    );
+    if (response.ok) {
+      const data = await response.json();
+
+      displayWeatherIcon(data);
+
+      document.querySelector('#location').textContent = data.name;
+      document.querySelector('#current-temp').textContent =
+        Math.ceil(data.main.temp) + '°C';
+      document.querySelector('#description').textContent =
+        data.weather[0].description;
+      document.querySelector('#feels-temp').textContent =
+        Math.ceil(data.main.feels_like) + ' °C';
+      document.querySelector('#wind').innerHTML =
+        data.wind.speed + `<span class="metrics"> km/h</span>`;
+      document.querySelector('#humidity').innerHTML =
+        data.main.humidity + `<span class="metrics"> %</span>`;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 // renders icons based on the weather and time of day:
 function displayWeatherIcon(data) {
