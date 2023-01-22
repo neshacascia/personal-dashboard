@@ -6,6 +6,7 @@ const fahrenheitBtn = document.querySelector('#fahrenheit');
 
 let lat;
 let lon;
+let isCelsius = true;
 
 celsiusBtn.addEventListener('click', displayCelsiusWeather);
 fahrenheitBtn.addEventListener('click', fahrenheitWeather);
@@ -19,6 +20,8 @@ navigator.geolocation.getCurrentPosition(position => {
 });
 
 async function displayCelsiusWeather() {
+  isCelsius = true;
+
   try {
     const response = await fetch(
       `${baseUrl}?lat=${lat}&lon=${lon}${apiKey}&units=metric`
@@ -27,18 +30,7 @@ async function displayCelsiusWeather() {
       const data = await response.json();
 
       displayWeatherIcon(data);
-
-      document.querySelector('#location').textContent = data.name;
-      document.querySelector('#current-temp').textContent =
-        Math.ceil(data.main.temp) + ' °C';
-      document.querySelector('#description').textContent =
-        data.weather[0].description;
-      document.querySelector('#feels-temp').textContent =
-        Math.ceil(data.main.feels_like) + ' °C';
-      document.querySelector('#wind').innerHTML =
-        data.wind.speed + `<span class="metrics"> km/h</span>`;
-      document.querySelector('#humidity').innerHTML =
-        data.main.humidity + `<span class="metrics"> %</span>`;
+      displayWeatherInfo(data);
     }
   } catch (error) {
     console.log(error);
@@ -46,6 +38,8 @@ async function displayCelsiusWeather() {
 }
 
 function fahrenheitWeather() {
+  isCelsius = false;
+
   displayFahrenheitWeather();
 
   async function displayFahrenheitWeather() {
@@ -54,26 +48,30 @@ function fahrenheitWeather() {
         `${baseUrl}?lat=${lat}&lon=${lon}${apiKey}&units=imperial`
       );
       if (response.ok) {
-        const fahrenheitData = await response.json();
+        const data = await response.json();
 
-        displayWeatherIcon(fahrenheitData);
-
-        document.querySelector('#location').textContent = fahrenheitData.name;
-        document.querySelector('#current-temp').textContent =
-          Math.ceil(fahrenheitData.main.temp) + ' °F';
-        document.querySelector('#description').textContent =
-          fahrenheitData.weather[0].description;
-        document.querySelector('#feels-temp').textContent =
-          Math.ceil(fahrenheitData.main.feels_like) + ' °F';
-        document.querySelector('#wind').innerHTML =
-          fahrenheitData.wind.speed + `<span class="metrics"> m/h</span>`;
-        document.querySelector('#humidity').innerHTML =
-          fahrenheitData.main.humidity + `<span class="metrics"> %</span>`;
+        displayWeatherIcon(data);
+        displayWeatherInfo(data);
       }
     } catch (error) {
       console.log(error);
     }
   }
+}
+
+function displayWeatherInfo(data) {
+  document.querySelector('#location').textContent = data.name;
+  document.querySelector('#current-temp').textContent =
+    Math.ceil(data.main.temp) + `${isCelsius ? ' °C' : ' °F'}`;
+  document.querySelector('#description').textContent =
+    data.weather[0].description;
+  document.querySelector('#feels-temp').textContent =
+    Math.ceil(data.main.feels_like) + `${isCelsius ? ' °C' : ' °F'}`;
+  document.querySelector('#wind').innerHTML =
+    data.wind.speed +
+    `<span class="metrics">${isCelsius ? 'km/h' : 'm/h'}</span>`;
+  document.querySelector('#humidity').innerHTML =
+    data.main.humidity + `<span class="metrics"> %</span>`;
 }
 
 // renders icons based on the weather and time of day:
