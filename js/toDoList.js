@@ -1,12 +1,24 @@
 let toDoInput = document.querySelector('.to-do-input');
+let message = document.querySelector('#message');
 let clearItemsBtn = document.querySelector('#clear-completed');
 let itemsLeft = 0;
 
 toDoInput.addEventListener('keypress', e => {
   if (e.key === 'Enter') {
     e.preventDefault();
-    addToDoItem();
-    toDoInput.value = '';
+
+    formValidation();
+  }
+
+  function formValidation() {
+    if (toDoInput.value === '') {
+      message.style.display = 'block';
+      return;
+    } else {
+      message.style.display = 'none';
+      addToDoItem();
+      toDoInput.value = '';
+    }
   }
 
   clearItemsBtn.addEventListener('click', removeItems);

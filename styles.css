@@ -405,8 +405,19 @@ nav {
 
 .button-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin-top: 25px;
+  gap: 10px;
+}
+
+#message {
+  color: rgb(244, 59, 59);
+  display: none;
+}
+
+.display-buttons {
+  display: flex;
+  justify-content: space-between;
 }
 
 #items-left {
