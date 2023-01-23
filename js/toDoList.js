@@ -1,8 +1,8 @@
 let input = document.querySelector('.to-do-input');
-let message = document.querySelector('#message');
+const message = document.querySelector('#message');
 let tasks = document.querySelector('#to-do-list');
-let clearItemsBtn = document.querySelector('#clear-completed');
-let itemsLeft = 0;
+const deleteBtn = document.querySelector('#delete');
+const clearItemsBtn = document.querySelector('#clear-completed');
 let data = [];
 
 input.addEventListener('keypress', e => {
@@ -12,6 +12,12 @@ input.addEventListener('keypress', e => {
     formValidation();
   }
 });
+
+(() => {
+  data = JSON.parse(localStorage.getItem('data')) || [];
+  console.log(data);
+  displayTasks();
+})();
 
 function formValidation() {
   if (input.value === '') {
@@ -37,18 +43,27 @@ function acceptData() {
 
 function displayTasks() {
   tasks.innerHTML = '';
-  itemsLeft++;
   data.map((item, ind) => {
     return (tasks.innerHTML += `
     <li class="to-do-item" id=${ind}>
     <div class="checkbox-container">
-      <button id="completed" class="checkbox" type="button"></button>
+      <input id="delete" class="checkbox" type="checkbox" onClick="deleteTask(this)" />
     </div>
-    <p class="to-do">${item.task}</p>
+    <p class="to-do" >${item.task}</p>
   </li>`);
   });
 
-  document.querySelector('#items-left').textContent = itemsLeft + ' items left';
+  document.querySelector('#items-left').textContent =
+    data.length + ' items left';
 }
 
-// clearItemsBtn.addEventListener('click', removeItems);
+function deleteTask(e) {
+  e.parentElement.parentElement.remove();
+  data.splice(e.parentElement.parentElement.id, 1);
+
+  localStorage.setItem('data', JSON.stringify(data));
+  console.log(data);
+
+  document.querySelector('#items-left').textContent =
+    data.length + ' items left';
+}
