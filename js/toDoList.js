@@ -1,9 +1,10 @@
-let toDoInput = document.querySelector('.to-do-input');
+let input = document.querySelector('.to-do-input');
 let message = document.querySelector('#message');
 let clearItemsBtn = document.querySelector('#clear-completed');
 let itemsLeft = 0;
+let data = {};
 
-toDoInput.addEventListener('keypress', e => {
+input.addEventListener('keypress', e => {
   if (e.key === 'Enter') {
     e.preventDefault();
 
@@ -11,14 +12,19 @@ toDoInput.addEventListener('keypress', e => {
   }
 
   function formValidation() {
-    if (toDoInput.value === '') {
-      message.style.display = 'block';
+    if (input.value === '') {
+      message.innerText = 'Task cannot be blank';
       return;
     } else {
-      message.style.display = 'none';
-      addToDoItem();
-      toDoInput.value = '';
+      message.innerText = '';
+      acceptData();
+      input.value = '';
     }
+  }
+
+  function acceptData() {
+    data['text'] = input.value;
+    console.log(data);
   }
 
   clearItemsBtn.addEventListener('click', removeItems);
@@ -34,7 +40,7 @@ toDoInput.addEventListener('keypress', e => {
   }
 
   function addToDoItem() {
-    let toDoItem = toDoInput.value;
+    let toDoItem = input.value;
 
     itemsLeft++;
     document.querySelector('#items-left').textContent =
