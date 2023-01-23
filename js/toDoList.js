@@ -53,8 +53,9 @@ function displayTasks() {
   </li>`);
   });
 
-  document.querySelector('#items-left').textContent =
-    data.length + ' items left';
+  document.querySelector('#items-left').textContent = `${
+    data.length === 1 ? data.length + ' item left' : data.length + ' items left'
+  }`;
 }
 
 function deleteTask(e) {
@@ -64,6 +65,7 @@ function deleteTask(e) {
   localStorage.setItem('data', JSON.stringify(data));
   console.log(data);
 
-  document.querySelector('#items-left').textContent =
-    data.length + ' items left';
+  document.querySelector('#items-left').textContent = `${
+    data.length === 1 ? data.length + ' item left' : data.length + ' items left'
+  }`;
 }
