@@ -1,5 +1,6 @@
 const baseUrl = 'https://api.openweathermap.org/data/2.5/weather';
-const apiKey = config.WEATHER_API_KEY;
+// const apiKey = config.WEATHER_API_KEY;
+const apiKey = '&appid=e4d584a0391f91345797ac7848ab4ac7';
 const weatherIconDisplay = document.querySelector('#weather-icon');
 const celsiusBtn = document.querySelector('#celsius');
 const fahrenheitBtn = document.querySelector('#fahrenheit');
