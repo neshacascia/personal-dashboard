@@ -4,7 +4,6 @@ async function getZenQuote() {
   try {
     const response = await fetch('https://type.fit/api/quotes');
     const data = await response.json();
-    console.log(data);
 
     const randomNum = Math.floor(Math.random() * data.length);
 
