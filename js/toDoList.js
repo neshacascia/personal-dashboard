@@ -35,4 +35,20 @@ function acceptData() {
   displayTasks();
 }
 
+function displayTasks() {
+  tasks.innerHTML = '';
+  itemsLeft++;
+  data.map((item, ind) => {
+    return (tasks.innerHTML += `
+    <li class="to-do-item" id=${ind}>
+    <div class="checkbox-container">
+      <button id="completed" class="checkbox" type="button"></button>
+    </div>
+    <p class="to-do">${item.task}</p>
+  </li>`);
+  });
+
+  document.querySelector('#items-left').textContent = itemsLeft + ' items left';
+}
+
 // clearItemsBtn.addEventListener('click', removeItems);
