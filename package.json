@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  },
+  "name": "personal-dashboard",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node weather",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neshacascia/personal-dashboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neshacascia/personal-dashboard/issues"
+  },
+  "homepage": "https://github.com/neshacascia/personal-dashboard#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

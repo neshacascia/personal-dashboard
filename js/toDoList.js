@@ -15,7 +15,7 @@ input.addEventListener('keypress', e => {
 
 (() => {
   data = JSON.parse(localStorage.getItem('data')) || [];
-  console.log(data);
+
   displayTasks();
 })();
 
@@ -36,7 +36,6 @@ function acceptData() {
   });
 
   localStorage.setItem('data', JSON.stringify(data));
-  console.log(data);
 
   displayTasks();
 }
@@ -63,7 +62,6 @@ function deleteTask(e) {
   data.splice(e.parentElement.parentElement.id, 1);
 
   localStorage.setItem('data', JSON.stringify(data));
-  console.log(data);
 
   document.querySelector('#items-left').textContent = `${
     data.length === 1 ? data.length + ' item left' : data.length + ' items left'
